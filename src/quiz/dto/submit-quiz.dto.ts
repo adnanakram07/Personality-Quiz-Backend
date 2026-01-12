@@ -1,5 +1,12 @@
-import { IsArray, IsInt, IsString, IsEmail, IsNumber } from 'class-validator';
-import { ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsInt,
+  IsString,
+  IsEmail,
+  IsNumber,
+  IsOptional,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class AnswerDto {
@@ -8,14 +15,17 @@ export class AnswerDto {
 }
 
 export class SubmitQuizDto {
+  @IsOptional()
   @IsString()
-  name: string;
+  name?: string;
 
+  @IsOptional()
   @IsNumber()
-  age: number;
+  age?: number;
 
+  @IsOptional()
   @IsEmail()
-  email: string;
+  email?: string;
 
   @IsArray()
   @ValidateNested({ each: true })
